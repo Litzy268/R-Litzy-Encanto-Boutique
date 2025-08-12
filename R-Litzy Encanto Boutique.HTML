@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R-Litzy Encanto Boutique - Moda Femenina en Guatemala</title>
+    <style>
+        :root {
+            --rosa-principal: #ff85a2;
+            --rosa-claro: #ffb3c6;
+            --rosa-suave: #ffe5ec;
+            --dorado: #d4af37;
+            --gris-oscuro: #333;
+            --blanco: #fff;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--rosa-suave);
+            color: var(--gris-oscuro);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-claro));
+            color: var(--blanco);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        nav {
+            background-color: var(--blanco);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            margin: 0 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--gris-oscuro);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--rosa-principal);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanco);
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--rosa-principal);
+            color: var(--blanco);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--rosa-claro);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .productos-titulo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .productos-titulo h2 {
+            font-size: 2.5rem;
+            color: var(--gris-oscuro);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .productos-titulo h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--rosa-principal);
+        }
+        
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .producto {
+            background-color: var(--blanco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .producto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .producto-imagen {
+            height: 280px;
+            overflow: hidden;
+        }
+        
+        .producto-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .producto:hover .producto-imagen img {
+            transform: scale(1.05);
+        }
+        
+        .producto-info {
+            padding: 15px;
+        }
+        
+        .producto-titulo {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--gris-oscuro);
+        }
+        
+        .producto-precio {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--rosa-principal);
+            margin-bottom: 10px;
+        }
+        
+        .producto-descripcion {
+            margin-bottom: 12px;
+            color: #666;
+            line-height: 1.4;
+            font-size: 0.85rem;
+        }
+        
+        .producto-tallas {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .talla-option {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.3s;
+        }
+        
+        .talla-option:hover, .talla-option.selected {
+            background-color: var(--rosa-principal);
+            color: var(--blanco);
+            border-color: var(--rosa-principal);
+        }
+        
+        .agregar-carrito {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--rosa-principal);
+            color: var(--blanco);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .agregar-carrito:hover {
+            background-color: var(--rosa-claro);
+        }
+        
+        .carrito-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: var(--blanco);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .carrito-sidebar.active {
+            right: 0;
+        }
+        
+        .carrito-header {
+            padding: 20px;
+            background-color: var(--rosa-principal);
+            color: var(--blanco);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cerrar-carrito {
+            background: none;
+            border: none;
+            color: var(--blanco);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .carrito-items {
+            padding: 20px;
+        }
+        
+        .carrito-item {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .carrito-item-imagen {
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .carrito-item-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carrito-item-info {
+            flex: 1;
+        }
+        
+        .carrito-item-titulo {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .carrito-item-precio {
+            color: var(--rosa-principal);
+            font-weight: 700;
+        }
+        
+        .carrito-item-cantidad {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .cantidad-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cantidad-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .eliminar-item {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .carrito-total {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: right;
+        }
+        
+        .carrito-total h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .carrito-acciones {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .carrito-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .carrito-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .carrito-icono {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background-color: var(--rosa-principal);
+            color: var(--blanco);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        
+        .carrito-contador {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--dorado);
+            color: var(--blanco);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        
+        footer {
+            background-color: var(--gris-oscuro);
+            color: var(--blanco);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--rosa-principal);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--rosa-principal);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--rosa-principal);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 10px 0;
+            }
+            
+            .carrito-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .carrito-sidebar.active {
+                right: 0;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">R-Litzy Encanto Boutique</div>
+        <div class="slogan">Elegancia y estilo para la mujer moderna</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Nueva Coleccion</a></li>
+            <li><a href="#">Vestidos</a></li>
+            <li><a href="#">Blusas</a></li>
+            <li><a href="#">Accesorios</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Coleccion Bella & Chic</h2>
+                <a href="#" class="btn">Descubrir Más</a>
+            </div>
+        </div>
+        
+        <div class="productos-titulo">
+            <h2>Nuestros Productos Destacados</h2>
+        </div>
+        
+        <div class="productos-grid">
+            <!-- Producto 1 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://image.made-in-china.com/202f0j00QHKofAwRCYbc/Spring-Summer-Women-Lady-Fashion-Floral-Stylish-Sexy-Dress-Collection-Garment-Clothing-Custom-Clothes-Apparel-Design-Brand-Logo-Digital-Print-Wholesales.webp" alt="Vestido floral">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Vestido Floral Primaveral</h3>
+                    <div class="producto-precio">Q 350.00</div>
+                    <p class="producto-descripcion">Vestido midi con estampado floral y mangas voluminosas. Perfecto para ocasiones especiales.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">XS</div>
+                        <div class="talla-option">S</div>
+                        <div class="talla-option selected">M</div>
+                        <div class="talla-option">L</div>
+                        <div class="talla-option">XL</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 2 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://image.made-in-china.com/202f0j00UFYivlNGCCuq/Women-Elegant-Silk-Blouse-Shirts-Chic-Stand-Lantern-Long-Sleeve-High-Quality-Double-Layers-White-Tops-Lady-Vintage-Crop-Top.webp" alt="Blusa elegante">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Blusa de Seda Elegante</h3>
+                    <div class="producto-precio">Q 280.00</div>
+                    <p class="producto-descripcion">Blusa de seda natural con cuello halter y detalles drapeados. Ideal para el trabajo o eventos.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">XS</div>
+                        <div class="talla-option selected">S</div>
+                        <div class="talla-option">M</div>
+                        <div class="talla-option">L</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_880934-MLM87108529204_072025-O-falda-plisada-de-mujer-cintura-alta-corta-y-ajustada.webp" alt="Falda plisada">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Falda Plisada Ajustada</h3>
+                    <div class="producto-precio">Q 320.00</div>
+                    <p class="producto-descripcion">Falda midi plisada en tejido fluido con cintura alta. Combinable con multiples estilos.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">S</div>
+                        <div class="talla-option">M</div>
+                        <div class="talla-option selected">L</div>
+                        <div class="talla-option">XL</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://s.alicdn.com/@sc04/kf/Hf390054e41d94885b3e0c6debd5e3e4d4/Manufacturer-New-Office-Clothing-Women-Suit-Office-Fashion-Casual-Fall-Outfits-Street-Wear-Two-Pieces-Ladies-Suit.jpg_300x300.jpg" alt="Conjunto pantalón">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Conjunto de Pantalon Elegante</h3>
+                    <div class="producto-precio">Q 420.00</div>
+                    <p class="producto-descripcion">Conjunto de dos piezas con pantalon de tiro alto y blusa de corte moderno. Elegancia asegurada.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">XS</div>
+                        <div class="talla-option">S</div>
+                        <div class="talla-option">M</div>
+                        <div class="talla-option selected">L</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 5 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://i.etsystatic.com/7889589/r/il/316ce9/6800801425/il_570xN.6800801425_6624.jpg" alt="Vestido noche">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Vestido de Noche Brillante</h3>
+                    <div class="producto-precio">Q 550.00</div>
+                    <p class="producto-descripcion">Vestido largo para ocasiones especiales con detalles brillantes y corte princesa. Destaca en cualquier evento.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">S</div>
+                        <div class="talla-option selected">M</div>
+                        <div class="talla-option">L</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 6 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://i.pinimg.com/474x/8d/e9/d0/8de9d0e504bea6f3742f001c113da58b.jpg" alt="Top crop">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Top Crop con Detalles</h3>
+                    <div class="producto-precio">Q 180.00</div>
+                    <p class="producto-descripcion">Top crop con mangas abullonadas y detalles de encaje. Perfecto para looks juveniles.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option selected">XS</div>
+                        <div class="talla-option">S</div>
+                        <div class="talla-option">M</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 7 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://cf.shopee.com.mx/file/8744c1bd71bac6b4cf13f369e98de2c6" alt="Chaleco elegante">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Chaleco de Gamuza</h3>
+                    <div class="producto-precio">Q 390.00</div>
+                    <p class="producto-descripcion">Chaleco de gamuza con detalles de costura expuesta. Ideal para looks casuales elegantes.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">S</div>
+                        <div class="talla-option selected">M</div>
+                        <div class="talla-option">L</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 8 --> 
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBugd3330402T1NI2MBLnZOMxwRxN41mGEQg&s" alt="Short denim">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Short Denim Premium</h3>
+                    <div class="producto-precio">Q 270.00</div>
+                    <p class="producto-descripcion">Short de mezclilla de alta calidad con roturas naturales y acabado desgastado.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">26</div>
+                        <div class="talla-option selected">28</div>
+                        <div class="talla-option">30</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 9 -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://images-cdn.ubuy.gt/654374808445b50ca86effd9-office-ol-business-slim-sleeveless.jpg" alt="Blazer formal">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Blazer Slim Fit</h3>
+                    <div class="producto-precio">Q 480.00</div>
+                    <p class="producto-descripcion">Blazer formal con corte femenino y ajuste perfecto. Disponible en varios colores.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option">S</div>
+                        <div class="talla-option">M</div>
+                        <div class="talla-option selected">L</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 10  -->
+            <div class="producto">
+                <div class="producto-imagen">
+                    <img src="https://m.media-amazon.com/images/I/81EQiVWdmDL._AC_SY741_.jpg" alt="Vestido playero">
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-titulo">Vestido Playero Fluido</h3>
+                    <div class="producto-precio">Q 310.00</div>
+                    <p class="producto-descripcion">Vestido ligero y fluido perfecto para dias de playa o paseos casuales.</p>
+                    <div class="producto-tallas">
+                        <div class="talla-option selected">S</div>
+                        <div class="talla-option">M</div>
+                        <div class="talla-option">L</div>
+                    </div>
+                    <button class="agregar-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Carrito de compras -->
+    <div class="carrito-overlay"></div>
+    
+    <div class="carrito-icono">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="carrito-contador">0</span>
+    </div>
+    
+    <div class="carrito-sidebar">
+        <div class="carrito-header">
+            <h3>Tu Carrito</h3>
+            <button class="cerrar-carrito">&times;</button>
+        </div>
+        <div class="carrito-items">
+            <!-- Los items del carrito se añadirán aquí dinámicamente -->
+        </div>
+        <div class="carrito-total">
+            <h3>Total: <span id="carrito-total-precio">Q 0.00</span></h3>
+        </div>
+        <div class="carrito-acciones">
+            <button class="btn" id="vaciar-carrito">Vaciar Carrito</button>
+            <button class="btn" id="pagar-ahora">Pagar Ahora</button>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Sobre Nosotros</h3>
+                <p>R-Litzy Encanto Boutique es tu destino de moda femenina en Guatemala, ofreciendo las ultimas tendencias con calidad y estilo.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Enlaces Rapidos</h3>
+                <a href="#">Nueva Coleccion</a>
+                <a href="#">Ofertas Especiales</a>
+                <a href="#">Politica de Devoluciones</a>
+                <a href="#">Terminos y Condiciones</a>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Informacion de Contacto</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 2 Avenida 0-63 zona 1, Calle Principal del Calvario, Nebaj 14013</p>
+                <p><i class="fas fa-phone"></i> +502 3805 8603</p>
+                <p><i class="fas fa-envelope"></i> info@rlitzyencanto.com</p>
+                <p><i class="fas fa-clock"></i> Lunes a Sabado: 9:00 AM - 7:00 PM</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Funcionalidad del carrito
+        document.addEventListener('DOMContentLoaded', function() {
+            const carritoIcono = document.querySelector('.carrito-icono');
+            const carritoSidebar = document.querySelector('.carrito-sidebar');
+            const carritoOverlay = document.querySelector('.carrito-overlay');
+            const cerrarCarrito = document.querySelector('.cerrar-carrito');
+            const agregarCarritoBtns = document.querySelectorAll('.agregar-carrito');
+            const carritoItemsContainer = document.querySelector('.carrito-items');
+            const carritoTotalPrecio = document.getElementById('carrito-total-precio');
+            const carritoContador = document.querySelector('.carrito-contador');
+            const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+            const pagarAhoraBtn = document.getElementById('pagar-ahora');
+            const tallaOptions = document.querySelectorAll('.talla-option');
+            
+            let carrito = [];
+            
+            // Abrir carrito
+            carritoIcono.addEventListener('click', function() {
+                carritoSidebar.classList.add('active');
+                carritoOverlay.classList.add('active');
+            });
+            
+            // Cerrar carrito
+            cerrarCarrito.addEventListener('click', function() {
+                carritoSidebar.classList.remove('active');
+                carritoOverlay.classList.remove('active');
+            });
+            
+            carritoOverlay.addEventListener('click', function() {
+                carritoSidebar.classList.remove('active');
+                carritoOverlay.classList.remove('active');
+            });
+            
+            // Seleccionar talla
+            tallaOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const productoContainer = this.closest('.producto');
+                    productoContainer.querySelectorAll('.talla-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Añadir al carrito
+            agregarCarritoBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productoContainer = this.closest('.producto');
+                    const productoNombre = productoContainer.querySelector('.producto-titulo').textContent;
+                    const productoPrecio = parseFloat(productoContainer.querySelector('.producto-precio').textContent.replace('Q ', ''));
+                    const productoImagen = productoContainer.querySelector('.producto-imagen img').src;
+                    
+                    // Verificar si se seleccionó una talla
+                    const tallaSeleccionada = productoContainer.querySelector('.talla-option.selected');
+                    if (!tallaSeleccionada) {
+                        alert('Por favor selecciona una talla antes de añadir al carrito.');
+                        return;
+                    }
+                    
+                    const producto = {
+                        nombre: productoNombre,
+                        precio: productoPrecio,
+                        imagen: productoImagen,
+                        talla: tallaSeleccionada.textContent,
+                        cantidad: 1
+                    };
+                    
+                    // Verificar si el producto ya está en el carrito
+                    const productoExistente = carrito.find(item => item.nombre === producto.nombre && item.talla === producto.talla);
+                    
+                    if (productoExistente) {
+                        productoExistente.cantidad += 1;
+                    } else {
+                        carrito.push(producto);
+                    }
+                    
+                    actualizarCarrito();
+                    carritoSidebar.classList.add('active');
+                    carritoOverlay.classList.add('active');
+                });
+            });
+            
+            // Actualizar carrito
+            function actualizarCarrito() {
+                carritoItemsContainer.innerHTML = '';
+                let total = 0;
+                
+                carrito.forEach((item, index) => {
+                    total += item.precio * item.cantidad;
+                    
+                    const carritoItem = document.createElement('div');
+                    carritoItem.classList.add('carrito-item');
+                    carritoItem.innerHTML = `
+                        <div class="carrito-item-imagen">
+                            <img src="${item.imagen}" alt="${item.nombre}">
+                        </div>
+                        <div class="carrito-item-info">
+                            <div class="carrito-item-titulo">${item.nombre}</div>
+                            <div class="carrito-item-precio">Q ${item.precio.toFixed(2)}</div>
+                            <div>Talla: ${item.talla}</div>
+                            <div class="carrito-item-cantidad">
+                                <button class="cantidad-btn decrementar" data-index="${index}">-</button>
+                                <input type="text" class="cantidad-input" value="${item.cantidad}" readonly>
+                                <button class="cantidad-btn incrementar" data-index="${index}">+</button>
+                            </div>
+                            <button class="eliminar-item" data-index="${index}">Eliminar</button>
+                        </div>
+                    `;
+                    
+                    carritoItemsContainer.appendChild(carritoItem);
+                });
+                
+                carritoTotalPrecio.textContent = `Q ${total.toFixed(2)}`;
+                carritoContador.textContent = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+                
+                // Añadir eventos a los botones de cantidad y eliminar
+                document.querySelectorAll('.decrementar').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        if (carrito[index].cantidad > 1) {
+                            carrito[index].cantidad -= 1;
+                            actualizarCarrito();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.incrementar').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        carrito[index].cantidad += 1;
+                        actualizarCarrito();
+                    });
+                });
+                
+                document.querySelectorAll('.eliminar-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        carrito.splice(index, 1);
+                        actualizarCarrito();
+                    });
+                });
+            }
+            
+            // Vaciar carrito
+            vaciarCarritoBtn.addEventListener('click', function() {
+                carrito = [];
+                actualizarCarrito();
+            });
+            
+            // Pagar ahora
+            pagarAhoraBtn.addEventListener('click', function() {
+                if (carrito.length === 0) {
+                    alert('Tu carrito está vacío. Añade algunos productos antes de pagar.');
+                } else {
+                    alert(`¡Gracias por tu compra! Total a pagar: ${carritoTotalPrecio.textContent}\nRedirigiendo a pasarela de pago...`);
+                    carrito = [];
+                    actualizarCarrito();
+                    carritoSidebar.classList.remove('active');
+                    carritoOverlay.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
